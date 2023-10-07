@@ -15,15 +15,3 @@ jobs:
       - run:
           name: Run Tests
           command: mvn test  # Run your Maven tests
-
-      # You can add more steps for deployment, if necessary.
-
-      - store_test_results:
-          path: target/surefire-reports  # Store test results for CircleCI to display
-
-      - store_artifacts:
-          path: target/*.jar  # Store the build artifacts (JAR file) for later deployment
-
-  # You can add more jobs or workflows for deployment, if needed.
-
-# You can define additional workflows or schedules here if needed.
