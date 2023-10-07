@@ -67,29 +67,4 @@
         <webjars-bootstrap.version>5.2.3</webjars-bootstrap.version>
         <webjars-font-awesome.version>4.7.0</webjars-font-awesome.version>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.gitlab.haynes</groupId>
-                <artifactId>libsass-maven-plugin</artifactId>
-                <version>0.2.29</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <?m2e execute onConfiguration,onIncremental?>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <inputPath>${basedir}/src/main/scss/</inputPath>
-                    <outputPath>${basedir}/src/main/resources/static/resources/css/</outputPath>
-                    <includePath>${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap/${webjars-bootstrap.version}/scss/</includePath>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
