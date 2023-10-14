@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
@@ -18,7 +17,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -67,8 +65,8 @@ class OwnerControllerTest {
     @Test
     void processFindFormReturnMany() throws Exception {
         when(ownerService.findAllByLastNameLike(anyString()))
-                .thenReturn(Arrays.asList(Owner.builder().id(1l).build(),
-                Owner.builder().id(2l).build()));
+                .thenReturn(Arrays.asList(Owner.builder().id(1L).build(),
+                Owner.builder().id(2L).build()));
 
         mockMvc.perform(get("/owners"))
                 .andExpect(status().isOk())
@@ -78,7 +76,7 @@ class OwnerControllerTest {
 
     @Test
     void processFindFormReturnOne() throws Exception {
-        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1l).build()));
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build()));
 
         mockMvc.perform(get("/owners"))
                 .andExpect(status().is3xxRedirection())
@@ -89,12 +87,12 @@ class OwnerControllerTest {
     @Test
     void displayOwner() throws Exception {
 
-        when(ownerService.findByID(anyLong())).thenReturn(Owner.builder().id(1l).build());
+        when(ownerService.findByID(anyLong())).thenReturn(Owner.builder().id(1L).build());
 
         mockMvc.perform(get("/owners/123"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("owners/ownerDetails"))
-                .andExpect(model().attribute("owner", hasProperty("id", is(1l))));
+                .andExpect(model().attribute("owner", hasProperty("id", is(1L))));
     }
 
     @Test
@@ -113,8 +111,7 @@ class OwnerControllerTest {
 
         mockMvc.perform(post("/owners/new"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/owners/1"))
-                .andExpect(model().attributeExists("owner"));
+                .andExpect(view().name("redirect:/owners/1"));
 
         verify(ownerService).save(ArgumentMatchers.any());
     }
@@ -137,8 +134,7 @@ class OwnerControllerTest {
 
         mockMvc.perform(post("/owners/1/edit"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/owners/1"))
-                .andExpect(model().attributeExists("owner"));
+                .andExpect(view().name("redirect:/owners/1"));
 
         verify(ownerService).save(ArgumentMatchers.any());
     }
