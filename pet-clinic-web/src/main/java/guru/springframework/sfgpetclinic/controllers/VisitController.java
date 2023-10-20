@@ -60,7 +60,6 @@ public class VisitController {
         return "pets/createOrUpdateVisitForm";
     }
 
-    @ModelAttribute("visit")
     @PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
     public String processNewVisitForm(@Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
